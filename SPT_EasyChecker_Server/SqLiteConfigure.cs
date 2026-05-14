@@ -78,7 +78,7 @@ public class SqLiteConfigure
                 """
                 CREATE TABLE IF NOT EXISTS access_events (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    created_at_utc TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
                     event_type TEXT NOT NULL,
                     decision TEXT NOT NULL,
                     session_id TEXT NOT NULL,
@@ -96,7 +96,7 @@ public class SqLiteConfigure
                 """);
 
             ExecuteNonQuery(connection,
-                "CREATE INDEX IF NOT EXISTS ix_access_events_created_at_utc ON access_events(created_at_utc);");
+                "CREATE INDEX IF NOT EXISTS ix_access_events_created_at ON access_events(created_at);");
             ExecuteNonQuery(connection,
                 "CREATE INDEX IF NOT EXISTS ix_access_events_session_id ON access_events(session_id);");
             ExecuteNonQuery(connection,
@@ -162,7 +162,7 @@ public class SqLiteConfigure
                 command.CommandText =
                     """
                     INSERT INTO access_events (
-                        created_at_utc,
+                        created_at,
                         event_type,
                         decision,
                         session_id,
@@ -177,7 +177,7 @@ public class SqLiteConfigure
                         trace_id,
                         reason
                     ) VALUES (
-                        $created_at_utc,
+                        $created_at,
                         $event_type,
                         $decision,
                         $session_id,
@@ -194,7 +194,7 @@ public class SqLiteConfigure
                     );
                     """;
 
-                command.Parameters.AddWithValue("$created_at_utc", DateTimeOffset.UtcNow.ToString("O"));
+                command.Parameters.AddWithValue("$created_at", DateTimeOffset.UtcNow.ToString("O"));
                 command.Parameters.AddWithValue("$event_type", accessEvent.EventType);
                 command.Parameters.AddWithValue("$decision", accessEvent.Decision);
                 command.Parameters.AddWithValue("$session_id", accessEvent.SessionId);
