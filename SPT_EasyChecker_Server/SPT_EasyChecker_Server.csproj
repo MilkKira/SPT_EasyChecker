@@ -4,11 +4,34 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <ReleaseOutputDir>..\Build\SPT\user\mods\MilkkiraEasyChecker</ReleaseOutputDir>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Lib.Harmony" Version="2.4.2" />
       <PackageReference Include="SPTarkov.Server.Core" Version="4.0.0" />
     </ItemGroup>
+
+    <!--清理垃圾-->
+    <Target Name="CleanUnwantedFiles" AfterTargets="Build">
+        <ItemGroup>
+            <UnwantedFiles Include="$(OutputPath)*.pdb;$(OutputPath)*.deps.json;$(OutputPath)*.endpoints.json;$(OutputPath)*.runtimeconfig.*;$(OutputPath)*.staticwebassets.*" />
+        </ItemGroup>
+        <Delete Files="@(UnwantedFiles)" />
+    </Target>
+
+    <!--复制到目标发布路径-->
+    <Target Name="CopyBuildOutput" AfterTargets="CleanUnwantedFiles">
+        <MakeDir Directories="$(ReleaseOutputDir)" />
+        <ItemGroup>
+            <RemainingFiles Include="$(OutputPath)**\*" />
+            <WebAssets Include="$(ProjectDir)wwwroot\**\*.*" />
+        </ItemGroup>
+        <Copy
+                SourceFiles="@(RemainingFiles)"
+                DestinationFiles="@(RemainingFiles->'$(ReleaseOutputDir)%(RecursiveDir)%(Filename)%(Extension)')"
+        />
+        <Copy SourceFiles="@(WebAssets)" DestinationFiles="@(WebAssets->'$(ReleaseOutputDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
 
 </Project>
