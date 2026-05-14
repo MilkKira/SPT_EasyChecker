@@ -30,7 +30,28 @@ internal static class Guard
     //白名单路径
     private static readonly HashSet<string> AllowedPaths = new(StringComparer.OrdinalIgnoreCase)
     {
+        "/launcher/server/connect",
+        "/launcher/ping",
+        "/launcher/server/version",
+        "/files/launcher/bg.png",
+        "/launcher/profiles",
+        "/launcher/profile/login",
+        "/launcher/profile/register",
+        "/launcher/profile/get",
+        "/launcher/profile/info",
+        "/launcher/server/loadedServerMods",
+        "/launcher/server/serverModsUsedBy",
+        "/singleplayer/bosstypes",
+        "/singleplayer/settings/version",
+        "/singleplayer/release",
+        "/singleplayer/enableBSGlogging",
+        "/singleplayer/moddedTraders",
+        "/singleplayer/bundles",
+        "/client/menu/locale/en",
+        "/client/game/mode",
+        "/client/game/start",
         "/singleplayer/clientmods"
+        // "/client/game/version/validate"
     };
     
     /**

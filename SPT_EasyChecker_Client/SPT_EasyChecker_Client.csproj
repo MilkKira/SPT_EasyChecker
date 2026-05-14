@@ -84,7 +84,7 @@
     <!--清理垃圾-->
     <Target Name="CleanUnwantedFiles" AfterTargets="Build">
         <ItemGroup>
-            <UnwantedFiles Include="$(OutputPath)*.pdb;$(OutputPath)*.deps.json;$(OutputPath)*.endpoints.json;$(OutputPath)*.runtimeconfig.*;$(OutputPath)*.staticwebassets.*" />
+            <UnwantedFiles Include="$(OutputPath)*.pdb; $(OutputPath)*.deps.json; $(OutputPath)*.dll" Exclude="$(OutputPath)SPT_EasyChecker_Client.dll" />
         </ItemGroup>
         <Delete Files="@(UnwantedFiles)" />
     </Target>
@@ -94,13 +94,11 @@
         <MakeDir Directories="$(ReleaseOutputDir)" />
         <ItemGroup>
             <RemainingFiles Include="$(OutputPath)**\*" />
-            <WebAssets Include="$(ProjectDir)wwwroot\**\*.*" />
         </ItemGroup>
         <Copy
                 SourceFiles="@(RemainingFiles)"
                 DestinationFiles="@(RemainingFiles->'$(ReleaseOutputDir)%(RecursiveDir)%(Filename)%(Extension)')"
         />
-        <Copy SourceFiles="@(WebAssets)" DestinationFiles="@(WebAssets->'$(ReleaseOutputDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
     </Target>
 
 </Project>
