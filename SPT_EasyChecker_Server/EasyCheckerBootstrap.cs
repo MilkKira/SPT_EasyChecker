@@ -12,18 +12,26 @@ public sealed class EasyCheckerBootstrap : IOnLoad
     
     private static bool _patched;
     
+    private readonly HttpResponseUtil _httpResponseUtil;
     private readonly ISptLogger<EasyCheckerBootstrap> _logger;
     
     public EasyCheckerBootstrap(HttpResponseUtil httpResponseUtil, ISptLogger<EasyCheckerBootstrap> logger)
     {
+        _httpResponseUtil = httpResponseUtil;
         _logger = logger;
     }
     
+    /**
+     * 加载
+     */
     public Task OnLoad()
     {
         if (_patched) return Task.CompletedTask;
         
+        Guard.Configure(_httpResponseUtil, _logger);
 
+        
+        
         // 使用服务端 GUID 作为 Harmony 实例 id
         var harmony = new Harmony(Constants.ServerGuid);
 

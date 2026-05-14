@@ -14,9 +14,8 @@ namespace SPT_EasyChecker_Server;
 [HarmonyPatch(typeof(SptHttpListener), "Handle", typeof(MongoId), typeof(HttpContext))]
 internal static class SptHttpListenerHandlePatch
 {
-    private static bool Prefix(MongoId sessionId, HttpContext context, ref Task __result)
-    {
-
+    private static bool Prefix(MongoId sessionId, HttpContext context, ref Task __result) {
+        return false;
     }
 }
 
@@ -24,12 +23,7 @@ internal static class SptHttpListenerHandlePatch
 [HarmonyPatch(typeof(GameCallbacks), nameof(GameCallbacks.ReceiveClientMods))]
 internal static class ReceiveClientModsPatch
 {
-    private static bool Prefix(SendClientModsRequest request, MongoId sessionID, ref ValueTask<string> __result)
-    {
-        if (ClientModGate.ValidateClientMods(request, sessionID, out var rejectionMessage)) return true;
-
-        // 首次校验失败时，直接返回 SPT 风格错误包，不继续执行原始 ReceiveClientMods。
-        __result = new ValueTask<string>(ClientModGate.BuildRejectBody(rejectionMessage));
+    private static bool Prefix(SendClientModsRequest request, MongoId sessionID, ref ValueTask<string> __result) {
         return false;
     }
 }
@@ -41,16 +35,8 @@ internal static class ReceiveClientModsPatch
 [HarmonyPatch(typeof(SptWebSocketConnectionHandler), nameof(SptWebSocketConnectionHandler.OnConnection))]
 internal static class SptWebSocketConnectionPatch
 {
-    private static bool Prefix(
-        WebSocket ws,
-        HttpContext context,
-        ref Task __result)
-    {
-        if (!ClientModGate.TryGetRejectedSessionFromPath(context, out var sessionId, out var reason)) return true;
+    private static bool Prefix(WebSocket ws, HttpContext context, ref Task __result) {
 
-        AntiCheatAuditStore.RecordWebSocketRequest(context, sessionId, "rejected", reason);
-        ClientModGate.LogRejectedWebSocket(sessionId, reason);
-        __result = ClientModGate.CloseRejectedWebSocketAsync(ws, reason);
         return false;
     }
 }
