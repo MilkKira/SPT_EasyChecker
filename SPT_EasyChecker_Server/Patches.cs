@@ -33,6 +33,7 @@ internal static class SptHttpListenerHandlePatch
         }
         
         // 返回 false 表示跳过原始 Handle；
+        SqLiteConfigure.RecordHttpRequest(sessionId, context, "HTTP_Rejects", reason);
         __result = Guard.RejectHttpRequestAsync(context, sessionId, reason);
         return false;
     }

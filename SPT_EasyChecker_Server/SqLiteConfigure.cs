@@ -106,6 +106,7 @@ public class SqLiteConfigure
 
             _initialized = true;
         }
+        _logger?.Info($"[MilkAntiCheatExpert] SQLite 数据库初始化完成，数据路径: {databasePath}");
     }
     
     /**
@@ -216,6 +217,29 @@ public class SqLiteConfigure
         {
             _logger?.Warning($"[MilkAntiCheatExpert] Failed to write SQLite audit event: {exception.Message}");
         }
+    }
+    
+    
+    /**
+     * 记录WS
+     */
+    public static void RecordWebSocketRequest(HttpContext context, string sessionId, string decision, string? reason = null)
+    {
+        Enqueue(
+            new AccessEvent(
+                EventType: "websocket_request",
+                Decision: decision,
+                SessionId: Limit(sessionId) ?? string.Empty,
+                ProfileId: ResolveProfileId(sessionId, context),
+                IpAddress: Limit(context.Connection.RemoteIpAddress?.ToString()),
+                ForwardedFor: Limit(ReadHeader(context, "X-Forwarded-For")),
+                Method: Limit(context.Request.Method),
+                Path: Limit(context.Request.Path.Value),
+                QueryString: Limit(context.Request.QueryString.Value),
+                Host: Limit(context.Request.Host.Value),
+                UserAgent: Limit(ReadHeader(context, "User-Agent")),
+                TraceId: Limit(context.TraceIdentifier),
+                Reason: Limit(reason)));
     }
      
     /**
