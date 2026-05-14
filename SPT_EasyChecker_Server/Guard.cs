@@ -50,7 +50,8 @@ internal static class Guard
         "/client/menu/locale/en",
         "/client/game/mode",
         "/client/game/start",
-        "/singleplayer/clientmods"
+        "/singleplayer/clientmods",
+        "/fika/natpunchserver/config"
         // "/client/game/version/validate"
     };
     
