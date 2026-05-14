@@ -29,7 +29,6 @@ public sealed class EasyCheckerBootstrap : IOnLoad
         if (_patched) return Task.CompletedTask;
         
         Guard.Configure(_httpResponseUtil, _logger);
-
         
         
         // 使用服务端 GUID 作为 Harmony 实例 id

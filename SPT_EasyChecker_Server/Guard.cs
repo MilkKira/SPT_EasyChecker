@@ -115,7 +115,7 @@ internal static class Guard
     /**
      * private 构建请求拒绝体
      */
-    private static string BuildRejectBody(string reason)
+    public static string BuildRejectBody(string reason)
     {
         var message = $"AntiCheat rejected this client: {reason}";
 
