@@ -1,10 +1,9 @@
-﻿using SPTarkov.Server.Core.Models.Spt.Mod;
+using SPTarkov.Server.Core.Models.Spt.Mod;
 using Range = SemanticVersioning.Range;
 using Version = SemanticVersioning.Version;
 
 namespace SPT_EasyChecker_Server;
 
-// SPT 服务端模组元数据。 SPT会读取这些字段来展示模组信息、判断版本范围和依赖关系。
 public sealed record MetaData : AbstractModMetadata
 {
     public override string ModGuid { get; init; } = Constants.ServerGuid;

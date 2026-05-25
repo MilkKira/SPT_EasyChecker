@@ -16,7 +16,7 @@
         <LangVersion>latest</LangVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Nullable>disable</Nullable>
-        <ReleaseOutputDir>..\Build\BepInEx\plugins\MilkkiraEasyCheckerClient\</ReleaseOutputDir>
+        <ReleaseOutputDir>..\..\Build\BepInEx\plugins\MilkkiraEasyCheckerClient\</ReleaseOutputDir>
         
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -69,7 +69,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Plugin.cs" />
+        <Compile Include="*.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>

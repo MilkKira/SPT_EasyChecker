@@ -4,12 +4,11 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <ReleaseOutputDir>..\Build\SPT\user\mods\MilkkiraEasyChecker\</ReleaseOutputDir>
+        <ReleaseOutputDir>..\..\Build\SPT\user\mods\MilkkiraEasyChecker\</ReleaseOutputDir>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Lib.Harmony" Version="2.4.2" />
-      <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.8" />
       <PackageReference Include="SPTarkov.Server.Core" Version="4.0.0" />
     </ItemGroup>
 

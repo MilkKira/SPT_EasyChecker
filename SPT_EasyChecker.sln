@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT_EasyChecker_Server", "SPT_EasyChecker_Server\SPT_EasyChecker_Server.csproj", "{6B15A194-57B9-487E-BC33-76045956567C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT_EasyChecker_Server", "src\Server\SPT_EasyChecker_Server.csproj", "{6B15A194-57B9-487E-BC33-76045956567C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT_EasyChecker_Client", "SPT_EasyChecker_Client\SPT_EasyChecker_Client.csproj", "{19033F77-B4E2-4922-9733-5DB897DDC589}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT_EasyChecker_Client", "src\Client\SPT_EasyChecker_Client.csproj", "{19033F77-B4E2-4922-9733-5DB897DDC589}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
