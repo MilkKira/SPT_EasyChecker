@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT_EasyChecker_Server", "SPT_EasyChecker_Server\SPT_EasyChecker_Server.csproj", "{6B15A194-57B9-487E-BC33-76045956567C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPT_EasyChecker_Client", "SPT_EasyChecker_Client\SPT_EasyChecker_Client.csproj", "{19033F77-B4E2-4922-9733-5DB897DDC589}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{6B15A194-57B9-487E-BC33-76045956567C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B15A194-57B9-487E-BC33-76045956567C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B15A194-57B9-487E-BC33-76045956567C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19033F77-B4E2-4922-9733-5DB897DDC589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19033F77-B4E2-4922-9733-5DB897DDC589}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19033F77-B4E2-4922-9733-5DB897DDC589}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19033F77-B4E2-4922-9733-5DB897DDC589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

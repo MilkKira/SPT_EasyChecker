@@ -25,6 +25,7 @@ public sealed class EasyCheckerBootstrap : IOnLoad
 
         Guard.Configure(_httpResponseUtil, _logger);
         JsonAuditStore.Configure(_logger);
+        FikaCrc32Store.Configure(_logger);
 
         var harmony = new Harmony(Constants.ServerGuid);
         harmony.PatchAll(typeof(EasyCheckerBootstrap).Assembly);

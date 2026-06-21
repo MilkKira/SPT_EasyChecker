@@ -91,6 +91,15 @@ internal static class Guard
             return false;
         }
 
+        var fikaMod = activeMods.First(mod =>
+            string.Equals(mod.GUID, Constants.FikaCoreGuid, StringComparison.OrdinalIgnoreCase));
+
+        if (!FikaCrc32Store.ValidateOrLearn(fikaMod, out rejectionMessage))
+        {
+            MarkRejected(sessionId, rejectionMessage);
+            return false;
+        }
+
         rejectionMessage = string.Empty;
         MarkVerified(sessionId);
         return true;
