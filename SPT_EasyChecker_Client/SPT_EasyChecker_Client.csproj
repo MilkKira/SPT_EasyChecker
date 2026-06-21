@@ -12,12 +12,10 @@
         <AssemblyName>SPT_EasyChecker_Client</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
-        <!--追加属性-->
         <LangVersion>latest</LangVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Nullable>disable</Nullable>
         <ReleaseOutputDir>..\Build\BepInEx\plugins\MilkkiraEasyCheckerClient\</ReleaseOutputDir>
-        
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,7 +51,6 @@
         </Reference>
         <Reference Include="System"/>
         <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
         <Reference Include="System.Xml"/>
         <Reference Include="UnityEngine">
           <HintPath>deps\UnityEngine.dll</HintPath>
@@ -73,32 +70,23 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
-
-    <!--清理垃圾-->
     <Target Name="CleanUnwantedFiles" AfterTargets="Build">
         <ItemGroup>
-            <UnwantedFiles Include="$(OutputPath)*.pdb; $(OutputPath)*.deps.json; $(OutputPath)*.dll" Exclude="$(OutputPath)SPT_EasyChecker_Client.dll" />
+            <UnwantedFiles
+                Include="$(OutputPath)*.pdb;$(OutputPath)*.deps.json;$(OutputPath)*.dll"
+                Exclude="$(OutputPath)SPT_EasyChecker_Client.dll" />
         </ItemGroup>
         <Delete Files="@(UnwantedFiles)" />
     </Target>
 
-    <!--复制到目标发布路径-->
     <Target Name="CopyBuildOutput" AfterTargets="CleanUnwantedFiles">
         <MakeDir Directories="$(ReleaseOutputDir)" />
         <ItemGroup>
             <RemainingFiles Include="$(OutputPath)**\*" />
         </ItemGroup>
         <Copy
-                SourceFiles="@(RemainingFiles)"
-                DestinationFiles="@(RemainingFiles->'$(ReleaseOutputDir)%(RecursiveDir)%(Filename)%(Extension)')"
-        />
+            SourceFiles="@(RemainingFiles)"
+            DestinationFiles="@(RemainingFiles->'$(ReleaseOutputDir)%(RecursiveDir)%(Filename)%(Extension)')" />
     </Target>
 
 </Project>
